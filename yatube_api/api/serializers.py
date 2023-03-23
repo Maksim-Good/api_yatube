@@ -6,7 +6,7 @@ class PostSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)
 
     class Meta:
-        fields = ('id', 'text', 'author', 'image', 'pub_date')
+        fields = ('id', 'text', 'author', 'image', 'group', 'pub_date')
         model = Post
 
 

@@ -5,7 +5,7 @@ from rest_framework import viewsets
 
 from .serializers import CommentSerializer, GroupSerializer, PostSerializer
 
-PERMISSION_DENIED_MASSAGE = 'Изменение чужого контента запрещено!'
+PERMISSION_DENIED_MESSAGE = 'Изменение чужого контента запрещено!'
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -17,12 +17,12 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def perform_update(self, serializer):
         if serializer.instance.author != self.request.user:
-            raise PermissionDenied(PERMISSION_DENIED_MASSAGE)
+            raise PermissionDenied(PERMISSION_DENIED_MESSAGE)
         super(PostViewSet, self).perform_update(serializer)
 
     def perform_destroy(self, serializer):
         if serializer.author != self.request.user:
-            raise PermissionDenied(PERMISSION_DENIED_MASSAGE)
+            raise PermissionDenied(PERMISSION_DENIED_MESSAGE)
         super(PostViewSet, self).perform_destroy(serializer)
 
 
@@ -46,10 +46,10 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def perform_update(self, serializer):
         if serializer.instance.author != self.request.user:
-            raise PermissionDenied(PERMISSION_DENIED_MASSAGE)
+            raise PermissionDenied(PERMISSION_DENIED_MESSAGE)
         super(CommentViewSet, self).perform_update(serializer)
 
     def perform_destroy(self, serializer):
         if serializer.author != self.request.user:
-            raise PermissionDenied(PERMISSION_DENIED_MASSAGE)
+            raise PermissionDenied(PERMISSION_DENIED_MESSAGE)
         super(CommentViewSet, self).perform_destroy(serializer)
